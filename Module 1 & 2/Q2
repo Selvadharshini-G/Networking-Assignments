@@ -1,0 +1,82 @@
+FTP CLIENT UBUNTU VM TERMINAL OUTPUT:
+------------------------------------
+
+vboxuser@ubuntu:~$ ftp 192.168.1.4
+
+Connected to 192.168.1.4.
+220 (vsFTPd 3.0.5)
+Name (192.168.1.4:vboxuser): kali
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+
+ftp> pwd
+257 "/home/kali" is the current directory
+
+ftp> cd Desktop
+250 Directory successfully changed.
+
+ftp> pwd
+257 "/home/kali/Desktop" is the current directory
+
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxrwxr-x    3 1000     1000         4096 Mar 06 21:36 dir
+-rw-rw-r--    1 1000     1000            0 Mar 09 07:08 ftp.txt
+226 Directory send OK.
+
+ftp> get ftp.txt
+local: ftp.txt remote: ftp.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for ftp.txt (0 bytes).
+226 Transfer complete.
+
+ftp> put temp.txt
+local: temp.txt remote: temp.txt
+200 PORT command successful. Consider using PASV.
+150 Ok to send data.
+226 Transfer complete.
+
+ftp> exit
+221 Goodbye.
+
+vboxuser@ubuntu:~$  
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+TERMINAL OUTPUT OF KALI VM (FTP SERVER): 
+-----------------------------------------
+                                                                                                                   
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo systemctl restart vsftpd
+sudo systemctl enable vsftpd
+
+Synchronizing state of vsftpd.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable vsftpd
+Created symlink /etc/systemd/system/multi-user.target.wants/vsftpd.service → /usr/lib/systemd/system/vsftpd.service.
+                                                                                                                   
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo netstat -tnlp | grep vsftpd
+
+tcp6       0      0 :::21                   :::*                    LISTEN      96600/vsftpd        
+                                                                                                                   
+┌──(kali㉿kali)-[~/Desktop]
+└─$ hostname -I
+192.168.1.4 2401:4900:1ce2:1b88:681:2083:4e1e:1c1e 2401:4900:1ce2:1b88:a00:27ff:fed8:50e3 
+                                                                                                                   
+                                                                                                                   
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo netstat -tnp | grep ftp
+
+tcp6       0      0 192.168.1.4:21          192.168.1.5:36048       ESTABLISHED 97546/vsftpd        
+                                                                                                                   
+┌──(kali㉿kali)-[~/Desktop]
+└─$ 
+
+-------------------------------------------------------------------------------------------------------
