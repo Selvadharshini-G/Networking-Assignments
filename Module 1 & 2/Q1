@@ -1,0 +1,8 @@
+Consider a case,a folder has multiple files and how would copy it to destination machine path(Try using SCP,cp options in Linux)
+To transfer a folder containing multiple files to a destination machine, scp is commonly used for remote transfers over SSH, while cp is suitable for local copies.
+When copying to a remote system, the command scp -r /path/to/local/folder username@remote_host:/path/to/destination/ ensures that all files and subdirectories are transferred securely.
+The -r flag enables recursive copying, while SSH authentication ensures data integrity and security during transmission.
+For local transfers within the same system or between mounted filesystems, cp provides an efficient solution.
+Using cp -r /source/folder /destination/path/ replicates the entire folder structure at the target location.
+This method is effective for quick duplication of directories without network dependency.
+In cases requiring high-speed transfers between systems within a network, alternatives like rsync can optimize performance while preserving permissions and timestamps.
