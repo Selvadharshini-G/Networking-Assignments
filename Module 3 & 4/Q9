@@ -1,5 +1,4 @@
-Q10.
- 
+
      Configuring a Basic LAN Interface Using the ip Command in Linux
      
 The ip command, included in the iproute2 package, is a powerful tool for managing network interfaces, routes, and addresses.
